@@ -8,7 +8,7 @@ varying vec4 glcolor;
 void main() {
 	vec4 color = texture2D(texture, texcoord) * glcolor;
 	
-	if(color.r==1.0f) {
+	if(color.a>0.1f) {
 		color = vec4(vec3(15.0f, 56.0f, 15.0f)/255.0f, 1.0f);
 	}
 	
