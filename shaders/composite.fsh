@@ -2,7 +2,7 @@
 
 uniform sampler2D gcolor;
 uniform float viewWidth;
-unifrom float viewHeight;
+uniform float viewHeight;
 
 varying vec2 texcoord;
 
@@ -35,9 +35,13 @@ void main() {
 	color = colorCorrection(color);
 	
 	#ifdef PIXEL_GAPS
-	if((newCoords * resolution) % pixelSize == 0.0f) {
+	if((newCoords.x * resolution.x) % pixelSize == 0.0f) {
 		color = vec4(lightGreen, color.a);
-	} else if((newCoords * resolution) % pixelSize == 1.0f) {
+	} else if((newCoords.x * resolution.x) % pixelSize == 1.0f) {
+		color = vec4(lightGreen, color.a);
+	} else if((newCoords.y * resolution.y) % pixelSize == 0.0f) {
+		color = vec4(lightGreen, color.a);
+	} else if((newCoords.y * resolution.y) % pixelSize == 1.0f) {
 		color = vec4(lightGreen, color.a);
 	}
 	#endif
