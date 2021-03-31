@@ -1,28 +1,26 @@
-vec3 pixelGrid(vec3 color, vec2 coord) {
-    float gridLeft = 1.0f/(pixelSize-(PIXEL_GAP/2.0f));
-    float gridRight = 1.0f/(pixelSize+(PIXEL_GAP/2.0f));
-    if(coord.x >= gridLeft && coord.x <= gridRight) {
-        return lightGreen;
-    } else if(coord.y >= gridLeft && coord.y <= gridRight) {
-        return lightGreen;
-    } else {
-        return color;
-    }
-}
-
-
 float roundToNearest(float number, float nearest) {
-    return floor(number/nearest)*nearest;
+	return floor(number / nearest) * nearest;
 }
 
-vec2 roundToNearest(vec2 number, float nearest) {
-    return floor(number/nearest)*nearest;
+float avgVec3(vec3 vector) {
+	return (vector.x + vector.y + vector.z) * 0.33333; 
 }
 
-vec3 roundToNearest(vec3 number, float nearest) {
-    return floor(number/nearest)*nearest;
+vec4 colorCorrection(vec4 color) {
+	vec3 newColor = color.rgb;
+	float brightness = avgVec3(newColor);
+	if(avgColor <= 0.25f) {
+		newColor = darkestGreen;
+	} else if(avgColor <= 0.5f) {
+		newColor = darkGreen;
+	} else if(avgColor <= 0.75f) {
+		newColor = lightGreen;
+	} else {
+		newColor = lightestGreen;
+	}
+	return vec4(newColor, color.a);
 }
 
-vec4 roundToNearest(vec4 number, float nearest) {
-    return floor(number/nearest)*nearest;
+vec2 resolutionCorrection(vec2 coords) {
+	return vec2(floor(coords/(1.0f/GBRes))*(1.0f/GBRes));
 }
