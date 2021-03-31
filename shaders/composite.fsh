@@ -7,8 +7,8 @@ uniform float viewHeight;
 varying vec2 texcoord;
 
 #define NATIVE_RES   // Native GB resolution
-#define NATIVE_ASPECT_RATIO   // Native GB aspect ratio
-#define PIXEL_GAP   // GB pixel gaps
+// #define NATIVE_ASPECT_RATIO   // Native GB aspect ratio
+// #define PIXEL_GAPS   // GB pixel gaps
 
 vec3 darkestGreen = vec3(15.0f, 56.0f, 15.0f) / 255.0f;
 vec3 darkGreen = vec3(48.0f, 98.0f, 48.0f) / 255.0f;
@@ -35,15 +35,15 @@ void main() {
 	color = colorCorrection(color);
 	
 	#ifdef PIXEL_GAPS
-	if((newCoords.x * resolution.x) % pixelSize == 0.0f) {
-		color = vec4(lightGreen, color.a);
-	} else if((newCoords.x * resolution.x) % pixelSize == 1.0f) {
-		color = vec4(lightGreen, color.a);
-	} else if((newCoords.y * resolution.y) % pixelSize == 0.0f) {
-		color = vec4(lightGreen, color.a);
-	} else if((newCoords.y * resolution.y) % pixelSize == 1.0f) {
-		color = vec4(lightGreen, color.a);
-	}
+		if((newCoords.x * resolution.x) % pixelSize == 0.0f) {
+			color = vec4(lightGreen, color.a);
+		} else if((newCoords.x * resolution.x) % pixelSize == 1.0f) {
+			color = vec4(lightGreen, color.a);
+		} else if((newCoords.y * resolution.y) % pixelSize == 0.0f) {
+			color = vec4(lightGreen, color.a);
+		} else if((newCoords.y * resolution.y) % pixelSize == 1.0f) {
+			color = vec4(lightGreen, color.a);
+		}
 	#endif
 
 /* DRAWBUFFERS:0 */
