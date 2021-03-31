@@ -24,3 +24,9 @@ vec4 colorCorrection(vec4 color) {
 vec2 resolutionCorrection(vec2 coords) {
 	return vec2(floor(coords/(1.0f/GBRes))*(1.0f/GBRes));
 }
+
+vec2 aspectRatioCorrection(vec2 coords) {
+	float adjustment = resolution.x % GBRes.x;
+	float adjustedX = (coords.x / pixelSize) - (adjustment * 0.5f);
+	return vec2(adjustedX, coords.y);
+}
