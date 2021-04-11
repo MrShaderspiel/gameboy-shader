@@ -1,23 +1,17 @@
 #version 120
 
-uniform float viewHeight;
-uniform float viewWidth;
-uniform mat4 gbufferModelView;
-uniform mat4 gbufferProjectionInverse;
-uniform vec3 fogColor;
-uniform vec3 skyColor;
+uniform int worldTime;
 
 varying vec4 starData;
 
 void main() {
 	vec3 color;
-	if (starData.a > 0.5) {
-		color = vec3(15.0f, 56.0f, 15.0f);
-		color /= 255.0f;
-	}
-	else {
-		color = vec3(155.0f, 188.0f, 15.0f);
-		color /= 255.0f;
+	if (starData.a > 0.5f) {
+		color = vec3(0.75f, 0.75f, 0.75f);
+	} else if(worldTime < 12000) {
+		color = vec3(0.5f, 0.5f, 0.5f);
+	} else if(worldTime > 12000) {
+		color = vec3(0.25f, 0.25f, 0.25f);
 	}
 
 /* DRAWBUFFERS:0 */
