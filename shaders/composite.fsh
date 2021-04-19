@@ -61,14 +61,14 @@ void main() {
 			color = vec4(0.0f, 0.0f, 0.0f, 1.0f);
 		}
 		
-	// fullscreen gameboy
+	// normal gameboy
 	#elif OVERLAY_METHOD == 2
 		vec4 overlay = texture2D(colortex4, texcoord.xy * vec2(1.0f, -1.0f));
 		if(overlay.a > 0.1f) {
 			color = vec4(vec3(overlay.rgb), 1.0f);
 		}
 		
-	// normal gameboy
+	// fullscreen gameboy
 	#elif OVERLAY_METHOD == 3
 		vec4 overlay = texture2D(colortex5, texcoord.xy * vec2(1.0f, -1.0f));
 		if(overlay.a > 0.1f) {
