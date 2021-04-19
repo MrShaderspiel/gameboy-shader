@@ -54,7 +54,7 @@ void main() {
 	}
 	
 	// black bars
-	#if OVERLAY_METHOD = 1
+	#if OVERLAY_METHOD == 1
 		if(newCoords.x < barWidth) {
 			color = vec4(0.0f, 0.0f, 0.0f, 1.0f);
 		} else if(newCoords.x > 1.0f - barWidth) {
@@ -62,14 +62,14 @@ void main() {
 		}
 		
 	// fullscreen gameboy
-	#elif OVERLAY_METHOD = 2
+	#elif OVERLAY_METHOD == 2
 		vec4 overlay = texture2D(colortex4, texcoord.xy);
 		if(overlay.a > 0.1f) {
 			color = vec4(vec3(overlay.rgb), 1.0f);
 		}
 		
 	// normal gameboy
-	#elif OVERLAY_METHOD = 3
+	#elif OVERLAY_METHOD == 3
 		vec4 overlay = texture2D(colortex5, texcoord.xy);
 		if(overlay.a > 0.1f) {
 			color = vec4(vec3(overlay.rgb), 1.0f);
