@@ -12,7 +12,7 @@ varying vec2 texcoord;
 #define NATIVE_RES   // Native GB resolution
 
 // 0 = none, 1 = bars, 2 = fullscreen gameboy, 3 = normal gameboy
-#define OVERLAY_METHOD 2.0f   // Enable and change overlays [0.0f, 1.0f, 2.0f, 3.0f]
+#define OVERLAY_METHOD 2   // Enable and change overlays [0, 1, 2, 3]
 
 vec3 darkestGreen = vec3(15.0f, 56.0f, 15.0f) / 255.0f;
 vec3 darkGreen = vec3(48.0f, 98.0f, 48.0f) / 255.0f;
@@ -54,7 +54,7 @@ void main() {
 	}
 	
 	// black bars
-	#if OVERLAY_METHOD = 1.0f
+	#if OVERLAY_METHOD = 1
 		if(newCoords.x < barWidth) {
 			color = vec4(0.0f, 0.0f, 0.0f, 1.0f);
 		} else if(newCoords.x > 1.0f - barWidth) {
@@ -62,14 +62,14 @@ void main() {
 		}
 		
 	// fullscreen gameboy
-	#elif OVERLAY_METHOD = 2.0f
+	#elif OVERLAY_METHOD = 2
 		vec4 overlay = texture2D(colortex4, texcoord.xy);
 		if(overlay.a > 0.1f) {
 			color = vec4(vec3(overlay.rgb), 1.0f);
 		}
 		
 	// normal gameboy
-	#elif OVERLAY_METHOD = 3.0f
+	#elif OVERLAY_METHOD = 3
 		vec4 overlay = texture2D(colortex5, texcoord.xy);
 		if(overlay.a > 0.1f) {
 			color = vec4(vec3(overlay.rgb), 1.0f);
