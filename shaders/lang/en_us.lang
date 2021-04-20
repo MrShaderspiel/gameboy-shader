@@ -1,2 +1,8 @@
 option.NATIVE_RES=Native GB Resolution
-option.NATIVE_ASPECT_RATIO=Native GB Aspect Ratio
+
+option.OVERLAY_METHOD=Overlays
+
+value.OVERLAY_METHOD.0=None
+value.OVERLAY_METHOD.1=Cinematic Black Bars
+value.OVERLAY_METHOD.2=Gameboy Overlay
+value.OVERLAY_METHOD.3=Full Height Overlay
