@@ -12,7 +12,7 @@ varying vec2 texcoord;
 #define NATIVE_RES   // Native GB resolution
 
 // 0 = none, 1 = bars, 2 = fullscreen gameboy, 3 = normal gameboy
-#define OVERLAY_METHOD 2   // Enable and change overlays [0, 1, 2, 3]
+#define OVERLAY_METHOD 2   // Enable and change overlays [0 1 2 3]
 
 vec3 darkestGreen = vec3(15.0f, 56.0f, 15.0f) / 255.0f;
 vec3 darkGreen = vec3(48.0f, 98.0f, 48.0f) / 255.0f;
@@ -22,8 +22,6 @@ vec3 lightestGreen = vec3(155.0f, 188.0f, 15.0f) / 255.0f;
 vec2 resolution = vec2(viewWidth, viewHeight);
 vec2 GBRes = vec2(160.0f, 144.0f);
 float pixelSize = resolution.y / GBRes.y;
-
-float barWidth = 1.0f / (mod(20.0f, resolution.x) * 0.5f);
 
 float roundToNearest(float number, float nearest) {
 	return floor(number / nearest) * nearest;
@@ -55,9 +53,8 @@ void main() {
 	
 	// black bars
 	#if OVERLAY_METHOD == 1
-		if(newCoords.x < barWidth) {
-			color = vec4(0.0f, 0.0f, 0.0f, 1.0f);
-		} else if(newCoords.x > 1.0f - barWidth) {
+		vec4 overlay = texture2D(colortex5, texcoord.xy * vec2(1.0f, -1.0f));
+		if(overlay.a > 0.1f) {
 			color = vec4(0.0f, 0.0f, 0.0f, 1.0f);
 		}
 		
@@ -74,6 +71,7 @@ void main() {
 		if(overlay.a > 0.1f) {
 			color = vec4(vec3(overlay.rgb), 1.0f);
 		}
+
 	#endif
 
 /* DRAWBUFFERS:0 */
