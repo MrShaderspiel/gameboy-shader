@@ -28,7 +28,7 @@ float roundToNearest(float number, float nearest) {
 }
 
 float avgVec3(vec3 vector) {
-	return (vector.x + vector.y + vector.z) * 0.33333; 
+	return dot(vector, vec3(0.33333); 
 }
 
 void main() {
